@@ -5,11 +5,18 @@ class Countdown
     @secs = secs
     @callback = block
   end
-  
+
+  #total number of seconds
+  def doubleValue()
+	@secs
+  end
+
+  # minutes portion of time left
   def mins
     @secs / 60
   end
-  
+
+  #seconds portion of time left
   def secs
     @secs % 60
   end

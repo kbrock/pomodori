@@ -3,6 +3,8 @@ require 'countdown'
 class TimerController
   attr_accessor :countdown, :timer_label
   attr_reader :start_time, :state, :timer
+  attr_accessor :timer_indicator
+  attr_accessor :remark_textfield
   
   POMODORO = 25 * 60
   BREAK = 5 * 60
@@ -38,11 +40,16 @@ class TimerController
     if(@state == RUNNING)
       @countdown.tick
       timer_label.stringValue = time
+	  timer_indicator.doubleValue = (@countdown.doubleValue() / POMODORO) * timer_indicator.maxValue
     else
       timer_label.stringValue = "Done!"
     end
   end
   
+  def on_submit_comment(sender)
+	on_pomodoro_start(sender)
+  end
+
   def on_pomodoro_done
   end
   
